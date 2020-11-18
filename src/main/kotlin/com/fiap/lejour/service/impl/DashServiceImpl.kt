@@ -35,18 +35,18 @@ class DashServiceImpl(
     }
 
     override fun getConversaoVenda(): ConversaoVendaList {
-        val janeiro = ConversaoVendas(titulo = "Jan", entrou = 230, agendou = 220, orcou = 190, contratou = 150, total = 122530.0)
-        val fevereiro = ConversaoVendas(titulo = "Fev", entrou = 280, agendou = 250, orcou = 200, contratou = 170, total = 149432.0)
-        val marco = ConversaoVendas(titulo = "Mar", entrou = 210, agendou = 184, orcou = 153, contratou = 142, total = 120830.0)
-        val abril = ConversaoVendas(titulo = "Abr", entrou = 265, agendou = 244, orcou = 240, contratou = 225, total = 132547.0)
-        val maio = ConversaoVendas(titulo = "Mai", entrou = 254, agendou = 233, orcou = 212, contratou = 197, total = 126447.0)
-        val jun = ConversaoVendas(titulo = "Jun", entrou = 354, agendou = 347, orcou = 341, contratou = 310, total = 162645.0)
-        val julho = ConversaoVendas(titulo = "Jul", entrou = 310, agendou = 302, orcou = 300, contratou = 289, total = 152835.0)
-        val agosto = ConversaoVendas(titulo = "Ago", entrou = 280, agendou = 254, orcou = 245, contratou = 241, total = 143704.0)
-        val setembro = ConversaoVendas(titulo = "Set", entrou = 334, agendou = 323, orcou = 320, contratou = 315, total = 158645.0)
-        val outubro = ConversaoVendas(titulo = "Out", entrou = 315, agendou = 283, orcou = 274, contratou = 269, total = 149978.0)
-        val novembro = ConversaoVendas(titulo = "Nov", entrou = 250, agendou = 230, orcou = 210, contratou = 195, total = 135465.0)
-        val dezembro = ConversaoVendas(titulo = "Dez", entrou = 0, agendou = 120, orcou = 102, contratou = 90, total = 82203.0)
+        val janeiro = ConversaoVendas(titulo = "Jan", entrou = 96, agendou = 93, orcou = 85, contratou = 79, total = 122530.0)
+        val fevereiro = ConversaoVendas(titulo = "Fev", entrou = 115, agendou = 110, orcou = 104, contratou = 97, total = 149432.0)
+        val marco = ConversaoVendas(titulo = "Mar", entrou = 21, agendou = 19, orcou = 17, contratou = 13, total = 120830.0)
+        val abril = ConversaoVendas(titulo = "Abr", entrou = 19, agendou = 17, orcou = 13, contratou = 12, total = 132547.0)
+        val maio = ConversaoVendas(titulo = "Mai", entrou = 24, agendou = 23, orcou = 20, contratou = 18, total = 126447.0)
+        val jun = ConversaoVendas(titulo = "Jun", entrou = 17, agendou = 16, orcou = 14, contratou = 10, total = 162645.0)
+        val julho = ConversaoVendas(titulo = "Jul", entrou = 14, agendou = 12, orcou = 10, contratou = 9, total = 152835.0)
+        val agosto = ConversaoVendas(titulo = "Ago", entrou = 13, agendou = 10, orcou = 8, contratou = 7, total = 143704.0)
+        val setembro = ConversaoVendas(titulo = "Set", entrou = 16, agendou = 13, orcou = 12, contratou = 10, total = 158645.0)
+        val outubro = ConversaoVendas(titulo = "Out", entrou = 17, agendou = 14, orcou = 12, contratou = 9, total = 149978.0)
+        val novembro = ConversaoVendas(titulo = "Nov", entrou = 9, agendou = 2, orcou = 1, contratou = 0, total = 135465.0)
+        val dezembro = ConversaoVendas(titulo = "Dez", entrou = 0, agendou = 0, orcou = 0, contratou = 0, total = 82203.0)
 
         return ConversaoVendaList(arrayListOf(janeiro, fevereiro, marco, abril, maio, jun, julho, agosto, setembro, outubro, novembro, dezembro))
     }
