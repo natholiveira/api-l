@@ -51,34 +51,36 @@ class DashServiceImpl(
         return ConversaoVendaList(arrayListOf(janeiro, fevereiro, marco, abril, maio, jun, julho, agosto, setembro, outubro, novembro, dezembro))
     }
 
-    override fun getEntradaCaixa(): GraficoEntradaSaida {
+    override fun getEntradaCaixa(servico: Servico?): GraficoEntradaSaida {
+        val vendasEntrada = if (servico == null) vendas else vendas.filter { vendaDTO -> vendaDTO.categoriaVendedor.equals(servico.categoria) }
+
         return GraficoEntradaSaida(entrada = Meses(
-                janeiro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JANEIRO.dataInicio) && vendaDTO.data.before(MesEnum.JANEIRO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                fevereiro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.FEVEREIRO.dataInicio) && vendaDTO.data.before(MesEnum.FEVEREIRO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                marco = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MARCO.dataInicio) && vendaDTO.data.before(MesEnum.MARCO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                abril = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.ABRIL.dataInicio) && vendaDTO.data.before(MesEnum.ABRIL.dataFim) }.map { it.lucro }.sum()).toInt(),
-                maio = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MAIO.dataInicio) && vendaDTO.data.before(MesEnum.MAIO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                junho = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JUNHO.dataInicio) && vendaDTO.data.before(MesEnum.JUNHO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                julho = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JULHO.dataInicio) && vendaDTO.data.before(MesEnum.JULHO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                agosto = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.AGOSTO.dataInicio) && vendaDTO.data.before(MesEnum.AGOSTO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                outubro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.OUTUBRO.dataInicio) && vendaDTO.data.before(MesEnum.OUTUBRO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                setembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.SETEMPRO.dataInicio) && vendaDTO.data.before(MesEnum.SETEMPRO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                novembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.NOVEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.NOVEMBRO.dataFim) }.map { it.lucro }.sum()).toInt(),
-                dezembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.DEZEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.DEZEMBRO.dataFim) }.map { it.lucro }.sum()).toInt()
+                janeiro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JANEIRO.dataInicio) && vendaDTO.data.before(MesEnum.JANEIRO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                fevereiro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.FEVEREIRO.dataInicio) && vendaDTO.data.before(MesEnum.FEVEREIRO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                marco = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MARCO.dataInicio) && vendaDTO.data.before(MesEnum.MARCO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                abril = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.ABRIL.dataInicio) && vendaDTO.data.before(MesEnum.ABRIL.dataFim) }.map { it.lucro }.sum()).toInt(),
+                maio = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MAIO.dataInicio) && vendaDTO.data.before(MesEnum.MAIO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                junho = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JUNHO.dataInicio) && vendaDTO.data.before(MesEnum.JUNHO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                julho = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JULHO.dataInicio) && vendaDTO.data.before(MesEnum.JULHO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                agosto = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.AGOSTO.dataInicio) && vendaDTO.data.before(MesEnum.AGOSTO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                outubro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.OUTUBRO.dataInicio) && vendaDTO.data.before(MesEnum.OUTUBRO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                setembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.SETEMPRO.dataInicio) && vendaDTO.data.before(MesEnum.SETEMPRO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                novembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.NOVEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.NOVEMBRO.dataFim) }.map { it.lucro }.sum()).toInt(),
+                dezembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.DEZEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.DEZEMBRO.dataFim) }.map { it.lucro }.sum()).toInt()
         ),
         saida = Meses(
-                janeiro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JANEIRO.dataInicio) && vendaDTO.data.before(MesEnum.JANEIRO.dataFim) }.map { it.valor }.sum()).toInt(),
-                fevereiro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.FEVEREIRO.dataInicio) && vendaDTO.data.before(MesEnum.FEVEREIRO.dataFim) }.map { it.valor }.sum()).toInt(),
-                marco = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MARCO.dataInicio) && vendaDTO.data.before(MesEnum.MARCO.dataFim) }.map { it.valor }.sum()).toInt(),
-                abril = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.ABRIL.dataInicio) && vendaDTO.data.before(MesEnum.ABRIL.dataFim) }.map { it.valor }.sum()).toInt(),
-                maio = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MAIO.dataInicio) && vendaDTO.data.before(MesEnum.MAIO.dataFim) }.map { it.valor }.sum()).toInt(),
-                junho = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JUNHO.dataInicio) && vendaDTO.data.before(MesEnum.JUNHO.dataFim) }.map { it.valor }.sum()).toInt(),
-                julho = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JULHO.dataInicio) && vendaDTO.data.before(MesEnum.JULHO.dataFim) }.map { it.valor }.sum()).toInt(),
-                agosto = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.AGOSTO.dataInicio) && vendaDTO.data.before(MesEnum.AGOSTO.dataFim) }.map { it.valor }.sum()).toInt(),
-                outubro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.OUTUBRO.dataInicio) && vendaDTO.data.before(MesEnum.OUTUBRO.dataFim) }.map { it.valor }.sum()).toInt(),
-                setembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.SETEMPRO.dataInicio) && vendaDTO.data.before(MesEnum.SETEMPRO.dataFim) }.map { it.valor }.sum()).toInt(),
-                novembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.NOVEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.NOVEMBRO.dataFim) }.map { it.valor }.sum()).toInt(),
-                dezembro = Math.round(vendas.filter { vendaDTO -> vendaDTO.data.after(MesEnum.DEZEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.DEZEMBRO.dataFim) }.map { it.valor }.sum()).toInt()
+                janeiro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JANEIRO.dataInicio) && vendaDTO.data.before(MesEnum.JANEIRO.dataFim) }.map { it.valor }.sum()).toInt(),
+                fevereiro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.FEVEREIRO.dataInicio) && vendaDTO.data.before(MesEnum.FEVEREIRO.dataFim) }.map { it.valor }.sum()).toInt(),
+                marco = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MARCO.dataInicio) && vendaDTO.data.before(MesEnum.MARCO.dataFim) }.map { it.valor }.sum()).toInt(),
+                abril = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.ABRIL.dataInicio) && vendaDTO.data.before(MesEnum.ABRIL.dataFim) }.map { it.valor }.sum()).toInt(),
+                maio = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.MAIO.dataInicio) && vendaDTO.data.before(MesEnum.MAIO.dataFim) }.map { it.valor }.sum()).toInt(),
+                junho = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JUNHO.dataInicio) && vendaDTO.data.before(MesEnum.JUNHO.dataFim) }.map { it.valor }.sum()).toInt(),
+                julho = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.JULHO.dataInicio) && vendaDTO.data.before(MesEnum.JULHO.dataFim) }.map { it.valor }.sum()).toInt(),
+                agosto = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.AGOSTO.dataInicio) && vendaDTO.data.before(MesEnum.AGOSTO.dataFim) }.map { it.valor }.sum()).toInt(),
+                outubro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.OUTUBRO.dataInicio) && vendaDTO.data.before(MesEnum.OUTUBRO.dataFim) }.map { it.valor }.sum()).toInt(),
+                setembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.SETEMPRO.dataInicio) && vendaDTO.data.before(MesEnum.SETEMPRO.dataFim) }.map { it.valor }.sum()).toInt(),
+                novembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.NOVEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.NOVEMBRO.dataFim) }.map { it.valor }.sum()).toInt(),
+                dezembro = Math.round(vendasEntrada.filter { vendaDTO -> vendaDTO.data.after(MesEnum.DEZEMBRO.dataInicio) && vendaDTO.data.before(MesEnum.DEZEMBRO.dataFim) }.map { it.valor }.sum()).toInt()
         ))
     }
 
@@ -113,13 +115,72 @@ class DashServiceImpl(
                 ))
     }
 
-    override fun getTagsPesquisadas(): TopList {
-        val tags = arrayListOf(Tags("casamento classico", 1430), Tags("casamento moderno", 1423), Tags("decoração rústica", 402), Tags("balada", 1393), Tags("drinks com álcool", 1387))
+    override fun getTagsPesquisadas(servico: Servico?): TopList {
+        var tags = arrayListOf<Tags>()
+        if (servico!= null) {
+            when(servico) {
+                Servico.ESPACO -> tags = arrayListOf(
+                        Tags("casamento classico", 1324),
+                        Tags("espaço moderno", 1205),
+                        Tags("casamento no campo", 1076),
+                        Tags("Salão Amplo", 856),
+                        Tags("cerimônia ao ar livre", 765))
+                Servico.SOM_ILUMINACAO -> tags = arrayListOf(
+                        Tags("balada", 1057),
+                        Tags("DJ de casamento", 997),
+                        Tags("palco", 864),
+                        Tags("painel de led", 756),
+                        Tags("atração em casamento", 509))
+                Servico.FOTO_FILMAGEM -> tags = arrayListOf(
+                        Tags("fotógrafo", 1004),
+                        Tags("foto natural", 932),
+                        Tags("fotografia de casamento no campo", 845),
+                        Tags("impressão de fotos", 654),
+                        Tags("álbum", 508))
+            }
+        } else {
+            tags = arrayListOf(
+                    Tags("casamento classico", 1324),
+                    Tags("espaço moderno", 1205),
+                    Tags("balada", 1057),
+                    Tags("fotógrafo", 1004),
+                    Tags("DJ de casamento", 997))
+        }
+
         return TopList(total = 7035, tags = tags)
     }
 
-    override fun getFornecedores(): TopList {
-        val tags = arrayListOf(Tags("Casa sofisticada em Mairiporã", 40152), Tags("Decoração LS em Campinas", 34032), Tags("Decoração MV em Campinas", 29154), Tags("Gastronomia LB em Osasco", 27014), Tags("Banda JL em São José dos Campos", 23045))
+    override fun getFornecedores(servico: Servico?): TopList {
+        var tags = arrayListOf<Tags>()
+        if (servico!= null) {
+            when(servico) {
+                Servico.ESPACO -> tags = arrayListOf(
+                        Tags("Casa sofisticada em Mairiporã", 1430),
+                        Tags("Fazenda histórica com casarão em Itu", 1423),
+                        Tags("Espaço Contemporâneo em Pinheiros", 1402),
+                        Tags("Espaço Contemporâneo em Pinheiros", 1393),
+                        Tags("cerimônia ao ar livre", 1387))
+                Servico.SOM_ILUMINACAO -> tags = arrayListOf(
+                        Tags("Som&iluminação FSL em Sorocaba", 1323),
+                        Tags("Som e Iluminação RP em São Paulo", 1123),
+                        Tags("DJ, Som & Iluminação KS em Sorocaba", 832),
+                        Tags("Som e Iluminação SS em Mairiporã", 793),
+                        Tags("Som e Iluminação EE em São Paulo", 503))
+                Servico.FOTO_FILMAGEM -> tags = arrayListOf(
+                        Tags("Foto & Filmagem DV em São Paulo", 1295),
+                        Tags("Foto & Filmagem OS em São Paulo", 1105),
+                        Tags("Foto & Filmagem AE em Atibaia", 907),
+                        Tags("Fotografia IS em Campinas", 867),
+                        Tags("Fotografia CF em São Paulo", 674))
+            }
+        } else {
+            tags = arrayListOf(
+                    Tags("Casa sofisticada em Mairiporã", 1430),
+                    Tags("Fazenda histórica com casarão em Itu", 1423),
+                    Tags("Som&iluminação FSL em Sorocaba", 1323),
+                    Tags("Foto & Filmagem DV em São Paulo", 1295),
+                    Tags("Decoração LS em Campinas", 1142))
+        }
         return TopList(total = 153043, tags = tags)
     }
 

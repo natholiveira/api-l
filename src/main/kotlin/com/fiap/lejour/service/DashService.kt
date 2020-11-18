@@ -6,9 +6,9 @@ interface DashService {
 
     fun getFaixaInvestimento(mes: MesEnum): FaixaInvestimento
     fun getConversaoVenda(): ConversaoVendaList
-    fun getTagsPesquisadas(): TopList
-    fun getFornecedores(): TopList
+    fun getTagsPesquisadas(servico: Servico?): TopList
+    fun getFornecedores(servico: Servico?): TopList
     fun getServicosMaisContratados(): TopList
-    fun getEntradaCaixa(): GraficoEntradaSaida
+    fun getEntradaCaixa(servico: Servico?): GraficoEntradaSaida
     fun getCasamento(): GraficoEntradaSaida
 }
