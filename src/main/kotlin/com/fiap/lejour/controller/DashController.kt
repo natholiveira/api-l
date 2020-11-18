@@ -21,7 +21,7 @@ class DashController(
         return DashDTO(
                 conversaoVenda = dashService.getConversaoVenda(),
                 faixaInvestimento = dashService.getFaixaInvestimento(mes ?: MesEnum.NOVEMBRO),
-                topList = dashService.getTagsPesquisadas(),
+                tagsPesquisadas = dashService.getTagsPesquisadas(),
                 fornecedores = dashService.getFornecedores(),
                 entradaCaixa = dashService.getEntradaCaixa(),
                 servicosMaisContratados = dashService.getServicosMaisContratados(),
