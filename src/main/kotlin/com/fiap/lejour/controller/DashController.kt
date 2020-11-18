@@ -4,6 +4,7 @@ import com.fiap.lejour.dto.DashDTO
 import com.fiap.lejour.dto.MesEnum
 import com.fiap.lejour.service.DashService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.websocket.server.PathParam
@@ -14,6 +15,7 @@ class DashController(
 ) {
 
     @GetMapping(("/dash"))
+    @CrossOrigin(origins = arrayOf("http://localhost:8080"))
     private fun getFaixa(@PathParam("mes") mes: MesEnum?): DashDTO {
 
         return DashDTO(
