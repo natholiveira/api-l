@@ -39,6 +39,7 @@ class DashServiceImpl(
         val fevereiro = ConversaoVendas(titulo = "Fev", entrou = 280, agendou = 250, orcou = 200, contratou = 170, total = 149432.0)
         val marco = ConversaoVendas(titulo = "Mar", entrou = 210, agendou = 184, orcou = 153, contratou = 142, total = 120830.0)
         val abril = ConversaoVendas(titulo = "Abr", entrou = 265, agendou = 244, orcou = 240, contratou = 225, total = 132547.0)
+        val maio = ConversaoVendas(titulo = "Mai", entrou = 254, agendou = 233, orcou = 212, contratou = 197, total = 126447.0)
         val jun = ConversaoVendas(titulo = "Jun", entrou = 354, agendou = 347, orcou = 341, contratou = 310, total = 162645.0)
         val julho = ConversaoVendas(titulo = "Jul", entrou = 310, agendou = 302, orcou = 300, contratou = 289, total = 152835.0)
         val agosto = ConversaoVendas(titulo = "Ago", entrou = 280, agendou = 254, orcou = 245, contratou = 241, total = 143704.0)
@@ -47,7 +48,7 @@ class DashServiceImpl(
         val novembro = ConversaoVendas(titulo = "Nov", entrou = 250, agendou = 230, orcou = 210, contratou = 195, total = 135465.0)
         val dezembro = ConversaoVendas(titulo = "Dez", entrou = 0, agendou = 120, orcou = 102, contratou = 90, total = 82203.0)
 
-        return ConversaoVendaList(arrayListOf(janeiro, fevereiro, marco, abril, jun, julho, agosto, setembro, outubro, novembro, dezembro))
+        return ConversaoVendaList(arrayListOf(janeiro, fevereiro, marco, abril, maio, jun, julho, agosto, setembro, outubro, novembro, dezembro))
     }
 
     override fun getEntradaCaixa(): GraficoEntradaSaida {
