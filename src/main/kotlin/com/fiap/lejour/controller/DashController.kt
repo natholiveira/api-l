@@ -15,7 +15,7 @@ class DashController(
 ) {
 
     @GetMapping(("/dash"))
-    @CrossOrigin(origins = arrayOf("http://localhost:8080"))
+    @CrossOrigin(origins = arrayOf("http://localhost:3000"))
     private fun getFaixa(@PathParam("mes") mes: MesEnum?): DashDTO {
 
         return DashDTO(
